@@ -11,9 +11,9 @@ namespace assignment {
       return n;
     }
 
-    // Напишите здесь свой код ...
+    double f = (1 + sqrt(5)) / 2;
 
-    return 0;
+    return round( (pow(f, n) - 1 / pow(-f, n)) / sqrt(5) );
   }
 
   int64_t fib_iterative(int n) {
@@ -26,16 +26,26 @@ namespace assignment {
     int64_t fib_prev = 0;
     int64_t fib_curr = 1;
 
-    // Напишите здесь свой код ...
+    for (int i = 2; i <= n; ++i) {
+      int64_t temp = fib_curr;
+      fib_curr = fib_prev + fib_curr;
+      fib_prev = temp;
+    }
 
-    return 0;
+    return fib_curr;
   }
 
   int64_t fib_recursive(int n) {
 
-    // Напишите здесь свой код ...
+    if (n == 0) {
+      return 0;
+    }
 
-    return 0;
+    if (n == 1) {
+      return 1;
+    }
+
+    return fib_recursive(n-1) + fib_recursive(n-2);
   }
 
   int64_t fib_recursive_memoization(int n, std::vector<int64_t>& cache) {
@@ -44,14 +54,13 @@ namespace assignment {
       return cache[n];
     }
 
+
     if (cache[n] != -1) {
-      // Напишите здесь свой код ...
-      return 0;
+      return cache[n];
     }
 
-    // Напишите здесь свой код ...
-
-    return 0;
+    cache[n] = fib_recursive_memoization(n-2, cache) + fib_recursive_memoization(n-1, cache);
+    return cache[n];
   }
 
   int64_t fib_matrix(int n) {
@@ -60,11 +69,9 @@ namespace assignment {
       return n;
     }
 
-    // Напишите здесь свой код ...
+      Matrix2x2 m = matrix_power(FibMatrix, n);
 
-    // Tip: используйте реализованную функцию matrix_pow
-
-    return 0;
+      return m[0][1];
   }
 
 }  // namespace assignment
